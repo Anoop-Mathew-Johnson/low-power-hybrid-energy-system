@@ -2,36 +2,40 @@
 
 **MSc dissertation project | Glasgow Caledonian University | 2022–2023**
 
-A simulation-oriented MSc research project investigating a proposed hybrid renewable-energy concept for low-power Internet of Things (IoT) applications.
+A simulation-oriented MSc research project investigating a proposed solar–wind hybrid energy concept for low-power Internet of Things (IoT) applications.
 
-## Project overview
+## Dissertation overview
 
 The dissertation, *Designing a Low Power Hybrid System to Power IoT Applications*, explored a concept combining:
 
 - Solar photovoltaic (PV) generation with maximum power point tracking (MPPT)
 - A Savonius-type vertical-axis wind turbine (VAWT)
-- Permanent magnets and an electromagnetic arrangement intended to provide rotor assistance
+- Permanent magnets mounted near the turbine blades and an electromagnetic arrangement intended to interact with them
 - An Active Magnetic Bearing (AMB) concept in place of a conventional mechanical bearing
 - A permanent magnet synchronous generator (PMSG) representation
 - Battery storage and a buck-converter representation
-- A threshold-based supervisory-control concept using environmental and electrical sensor inputs
+- Proposed supervisory control based on environmental and electrical sensor inputs, with Raspberry Pi identified as the intended controller platform
 
-The research used mathematical calculations and MATLAB/Simulink modelling. This repository publishes selected MATLAB function listings from the dissertation and supporting documentation.
+The dissertation describes mathematical calculations, theoretical analysis and MATLAB/Simulink modelling. This repository makes selected MATLAB function listings from the dissertation available with explanatory documentation.
 
-**Scope:** This is a selected-code academic portfolio repository. It is not the complete Simulink project, a fully reproducible copy of every dissertation simulation, a validated engineering software package or evidence of a physically constructed and experimentally validated prototype.
+> **Scope:** This is a selected-code academic portfolio repository. It is not the complete Simulink project, a fully reproducible copy of every dissertation simulation, a validated engineering software package or evidence of a physically constructed and experimentally validated prototype. The dissertation itself identifies further control-system simulation and hardware implementation as future work.
 
 ## Research objectives
 
-1. Explore solar–wind hybrid energy technology for low-power applications.
-2. Investigate the potential role of magnetic-bearing technology in a wind-turbine concept.
-3. Compare a model of a mechanical-bearing wind turbine with an AMB-related model.
-4. Develop a conceptual hybrid model combining solar, wind, electromagnetic and storage elements.
-5. Represent supervisory control behaviour for the proposed hybrid system.
-6. Examine the model outputs reported in the dissertation and identify further work required.
+The dissertation set out to:
 
-## Dissertation-reported results
+1. Research solar–wind hybrid technology.
+2. Investigate the impact of magnetic levitation technology on wind-turbine performance.
+3. Compare a mechanical-bearing wind-turbine model with an Active Magnetic Bearing (AMB) model.
+4. Propose a hybrid model integrating the magnetic-bearing concept.
+5. Develop a control-circuit concept for the hybrid model.
+6. Perform simulations of the proposed model.
 
-The dissertation reports the following power outputs for its mechanical-bearing and AMB-related wind-turbine comparison:
+## Results reported in the dissertation
+
+### Mechanical-bearing and AMB-related turbine comparison
+
+Chapter 5, Table 2 reports the following power outputs:
 
 | Wind speed (m/s) | Mechanical-bearing model (W) | AMB-related model (W) |
 |---:|---:|---:|
@@ -41,9 +45,13 @@ The dissertation reports the following power outputs for its mechanical-bearing 
 | 12.5 | 146.5 | 157.8 |
 | 15.0 | 258.1 | 275.8 |
 
-The dissertation also reports the following total outputs for its proposed hybrid model:
+The dissertation reports higher output for the AMB-related model at these five wind-speed cases. This is a comparison of the model outputs as reported in the dissertation; it is not an independently verified net-efficiency result. In Chapter 3, the dissertation separately estimates 9 W as the total power requirement for four electromagnets. The Chapter 5 comparison table does not clearly show this auxiliary demand being deducted from the AMB-related output.
 
-| Wind speed (m/s) | Reported wind contribution (W) | Reported solar contribution (W) | Reported total (W) |
+### Proposed hybrid-model results
+
+Chapter 5, Table 3 reports the following values:
+
+| Wind speed (m/s) | Wind contribution (W) | Solar contribution (W) | Reported total (W) |
 |---:|---:|---:|---:|
 | 5.0 | 78.55 | 30.33 | 108.88 |
 | 7.5 | 78.81 | 24.53 | 103.34 |
@@ -57,9 +65,9 @@ The dissertation also reports the following total outputs for its proposed hybri
 | 27.5 | 78.81 | 26.70 | 105.51 |
 | 30.0 | 78.62 | 29.24 | 107.86 |
 
-**Important interpretation note:** These are values reported in the dissertation, not independently reproduced or validated results. The proposed-model table shows a sharp change in the reported wind contribution at the 10 m/s and 25 m/s operating thresholds. The dissertation's Chapter 5 discussion says output is low between 10 and 25 m/s and rises outside that interval, while its Chapter 6 conclusion describes optimal performance within 10–25 m/s. These statements are inconsistent; the repository does not resolve that discrepancy.
+**Interpretation note:** The reported wind contribution is much lower between 10 m/s and 25 m/s than outside that interval. Chapter 5 describes this low-output interval and attributes the higher values outside it to the electromagnetic-system branch. However, Chapter 6 describes 10–25 m/s as the optimal performance range. These statements are inconsistent, so this repository preserves the reported data without resolving or reinterpreting the discrepancy.
 
-The bearing comparison also requires caution: the dissertation estimates 9 W total power for four electromagnets in its AMB sizing discussion, but the reported comparison table does not clearly show that auxiliary electrical consumption being deducted from the AMB-related output. Therefore, the table alone does not establish a net system-efficiency improvement.
+These figures are reproduced as dissertation-reported results only. They have not been independently recalculated from the full Simulink model or experimentally verified.
 
 ## Repository structure
 
@@ -90,13 +98,13 @@ Tests/
 
 ## Exploring the MATLAB functions
 
-The `.m` files are individual function listings associated with Chapter 4 of the dissertation. Their source sections and printed page references are documented in [Source Provenance](Documentation/Source_Provenance.md).
+The `.m` files are selected function listings associated with Chapters 4.1–4.3 of the dissertation. Their corresponding sections and printed page references are documented in [Source Provenance](Documentation/Source_Provenance.md).
 
-The optional script at `Tests/run_validation.m` is a preliminary execution-check harness. **It has not been run as part of this repository update.** Even successful execution checks would not establish the physical accuracy of the equations or validate the complete hybrid system.
+The optional script at `Tests/run_validation.m` is a preliminary execution-check harness. It has **not** been run as part of this documentation update. Successful execution checks would not establish the physical accuracy of the equations or validate the complete hybrid system.
 
-## Research context and contribution
+## Research context and individual contribution
 
-The work was completed as part of the MSc Electrical & Electronics Engineering programme at Glasgow Caledonian University. It provided experience in decomposing a hybrid energy concept into subsystems and representing selected wind-turbine, electromagnetic, generator, storage/converter and supervisory-control behaviours using MATLAB functions and a MATLAB/Simulink workflow.
+The project was completed as part of the MSc Electrical & Electronics Engineering programme at Glasgow Caledonian University. It provided experience in decomposing a hybrid energy concept into subsystems and representing selected turbine, electromagnetic, generator, storage/converter and supervisory-control behaviours using MATLAB functions and a MATLAB/Simulink workflow.
 
 See:
 - [Dissertation Information](Documentation/Dissertation_Information.md)
