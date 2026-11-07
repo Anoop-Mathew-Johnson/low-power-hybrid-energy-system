@@ -19,13 +19,15 @@ The page references below are the printed page numbers visible in the dissertati
 
 ## Transcription notes
 
-- Code has been transcribed from the dissertation's text listings and formatted as individual `.m` files.
+- Code was transcribed from the dissertation's text listings and formatted as individual `.m` files.
 - Line wrapping and indentation were normalised where required.
 - In `hybridControl.m`, the final MATLAB keyword was normalised to lowercase `end` so the function file uses MATLAB syntax consistently.
 - Explanatory comments were added to make provenance and known limitations clear. They are not claims that the dissertation contained those exact comments.
 - No model equations have intentionally been corrected in the dissertation-derived source files.
-- Where the source itself contains questionable equations, units or assumptions, the concern is described in [Code Notes](Code_Notes.md) and [Future Work and Technical Considerations](Future_Work_and_Technical_Considerations.md).
+- Where the dissertation or code listings contain questionable equations, units, assumptions or conflicting result interpretations, the concerns are described in [Code Notes](Code_Notes.md) and [Future Work and Technical Considerations](Future_Work_and_Technical_Considerations.md).
 
 ## Important distinction
 
 A source transcription is not the same as a validated reproduction of the dissertation's Simulink results. The full Simulink diagrams, block parameters, solver settings, test data and complete simulation project are not published in this repository. The function files should therefore be treated as selected source listings, not as a complete executable reproduction of the research.
+
+The repository preserves the dissertation-derived function approach for traceability. Any corrected or improved equations should be introduced in separately named future versions with their derivations documented, rather than silently replacing the original listings.
