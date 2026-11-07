@@ -21,6 +21,7 @@ The following issues are visible in the selected MATLAB listings. They are docum
 - **AMB model:** The AMB-related calculations do not implement a complete magnetic actuator, rotor-dynamic and closed-loop control model.
 - **Electromagnetic force:** The force-like calculation is based on simplified dissertation relationships and is not dimensionally established as a general Lorentz-force model.
 - **Electromagnetic branch units:** The VAWT function accepts an input named `electromagneticForce` but subsequently uses it as a magnetic-field quantity in further expressions. Its physical units and interpretation need to be re-derived.
+- **Wind-speed condition wording:** Chapter 4.2 prose describes wind-driven rotation for wind speed greater than 10 m/s or less than 25 m/s. The MATLAB function instead selects its electromagnetic branch below 10 m/s or above 25 m/s. The Chapter 5 results table follows the latter pattern more closely. The intended condition should be confirmed before any revised model is produced.
 - **PMSG model:** The generator function is a simple proportional relationship and omits a full machine model, losses, rectifier and load.
 - **Battery/converter model:** The time variable is scalar in the published function, so its voltage-update loop does not execute. The routine is not a dynamic battery or switching-converter model.
 - **Supervisory control:** The control function's action routines only print status messages. It is not an operational Raspberry Pi implementation and does not provide hardware-level safety or protection.
