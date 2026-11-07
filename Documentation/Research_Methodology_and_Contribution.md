@@ -5,15 +5,15 @@
 **Dissertation:** *Designing a Low Power Hybrid System to Power IoT Applications*  
 **Degree:** MSc Electrical & Electronics Engineering, Glasgow Caledonian University (2022–2023)
 
-The project investigated a proposed hybrid renewable-energy concept for low-power Power IoT applications. The concept brought together solar photovoltaic generation, a Savonius-type vertical-axis wind turbine, energy conversion, battery storage and supervisory control.
+The project investigated a proposed hybrid renewable-energy concept for low-power IoT applications. The concept brought together solar photovoltaic generation, a Savonius-type vertical-axis wind turbine, an electromagnetic arrangement interacting with permanent magnets, an active magnetic bearing (AMB) concept, generator and battery-storage elements, and supervisory control.
 
 ## Problem addressed
 
-Low-power connected applications require an energy supply that can remain available when one renewable source is intermittent. The project explored a hybrid approach in which solar and wind resources could complement one another, with battery storage supporting energy availability and the proposed auxiliary electromagnetic and bearing systems.
+Low-power IoT applications deployed in remote or off-grid settings may have limited access to conventional electrical supplies. The dissertation explored a solar–wind hybrid concept as a possible way to combine renewable generation and battery storage, while examining whether magnetic-bearing and electromagnetic concepts could form part of the wind subsystem.
 
 ## Work represented in the dissertation
 
-The Chapter 4 MATLAB listings cover the following modelling activities:
+The Chapter 4 MATLAB listings cover these modelling activities:
 
 1. A simplified VAWT power and torque calculation with mechanical-bearing parameters.
 2. A related VAWT calculation incorporating an AMB-related torque term.
@@ -24,25 +24,32 @@ The Chapter 4 MATLAB listings cover the following modelling activities:
 7. An AMB-related angular-velocity and auxiliary parameter calculation.
 8. Threshold-based supervisory logic using temperature, wind velocity, current, voltage and light-intensity inputs.
 
-The dissertation also presents Simulink model diagrams for subsystem and hybrid-system concepts. The repository publishes selected MATLAB function listings, not the full Simulink model.
+The dissertation also presents Simulink model diagrams for subsystem and hybrid-system concepts. This repository publishes selected MATLAB function listings, not the full Simulink model or all simulation assets.
 
 ## Methodology summary
 
-The work can be described as a simulation-oriented engineering study:
+The work is best described as a simulation-oriented engineering study:
 
 - Define a proposed hybrid renewable-energy architecture.
+- Establish selected turbine, bearing, solar, electromagnetic and storage assumptions.
 - Represent selected wind-turbine, electromagnetic, generator, storage/converter and control behaviours using MATLAB function blocks.
-- Combine selected subsystem concepts within a MATLAB/Simulink modelling workflow.
-- Consider operating conditions and threshold-based source/control decisions.
-- Discuss the suitability of the concept for low-power IoT applications.
+- Use a MATLAB/Simulink modelling workflow to examine subsystem and system-level concepts.
+- Present power-output comparisons and hybrid-model results in the dissertation.
+- Identify further modelling, control and hardware work required.
 
-Do not claim quantitative performance validation, experimental verification, or hardware deployment unless supported by additional test records.
+## Results reported in the dissertation
+
+Chapter 5 reports that the AMB-related wind-turbine model produced higher power values than the mechanical-bearing model at the five listed wind speeds. At 10 m/s, the dissertation reports 72.77 W for the mechanical-bearing model and 79.03 W for the AMB-related model.
+
+For the proposed hybrid model, Chapter 5 reports total outputs ranging from 24.4362 W to 108.88 W across the wind-speed cases listed in its Table 3. The table shows a marked reduction in the reported wind contribution between 10 and 25 m/s, with higher values outside that interval.
+
+These are values reported by the dissertation. They should not be described as independently validated or experimentally measured results. There are also interpretation issues: the Chapter 6 conclusion calls 10–25 m/s the optimal range even though the Chapter 5 table and discussion show low wind contribution within that range. In addition, the dissertation's AMB sizing section estimates 9 W for four electromagnets, but the comparison table does not clearly deduct this auxiliary demand from the reported AMB-related output.
 
 ## Individual contribution statement
 
 The following is a cautious portfolio statement based on the dissertation content. Keep it only if it accurately reflects the work you personally completed:
 
-> I developed an MSc research project investigating a low-power hybrid renewable-energy concept for Power IoT applications. The work explored the integration of solar PV and a Savonius-type vertical-axis wind subsystem with generator, battery-storage and power-management concepts. I developed MATLAB function-based representations of selected turbine, electromagnetic, PMSG, battery/converter and supervisory-control behaviours and used MATLAB/Simulink as the modelling environment to investigate the proposed system concept. The work was simulation-oriented; it did not establish a validated hardware prototype.
+> I developed an MSc research project investigating a low-power hybrid renewable-energy concept for IoT applications. The work explored the integration of solar PV and a Savonius-type vertical-axis wind subsystem with an electromagnetic arrangement, an active magnetic bearing concept, generator, battery-storage and power-management elements. I developed MATLAB function-based representations of selected turbine, electromagnetic, PMSG, battery/converter and supervisory-control behaviours and used MATLAB/Simulink as the modelling environment to investigate the proposed system concept. The project was simulation-oriented and did not establish a validated hardware prototype.
 
 ## What this project demonstrates
 
@@ -52,12 +59,14 @@ The following is a cautious portfolio statement based on the dissertation conten
 - Experience translating an engineering concept into a simulation-oriented study.
 - Awareness of the need to examine assumptions, units, model boundaries and validation requirements.
 
-## Limitations and future research
+## Limitations and further research
 
-The published code is preliminary and simplified. Several equations and assumptions require review before they can support quantitative engineering conclusions. The next research stage would include:
+The published code is preliminary and simplified. Several equations and assumptions require review before they can support quantitative engineering conclusions. Further work would include:
 
-- Re-deriving the aerodynamic, electromagnetic, generator and battery models from appropriate physical relationships.
-- Defining consistent SI units and documenting all parameter sources.
+- Re-deriving aerodynamic, electromagnetic, generator and battery models from appropriate physical relationships.
+- Confirming consistent SI units, sign conventions, angle conventions and parameter sources.
+- Resolving the discrepancy between the proposed-model wind-speed results and the conclusion's stated optimal operating range.
+- Accounting explicitly for AMB and electromagnetic subsystem power consumption in any net energy or efficiency comparison.
 - Replacing placeholder control actions with explicit input/output signals and a documented control strategy.
 - Modelling converter dynamics, losses, battery state of charge and component constraints.
 - Developing repeatable simulation test cases and comparing outputs against analytical calculations or measured data.
@@ -65,4 +74,4 @@ The published code is preliminary and simplified. Several equations and assumpti
 
 ## Suggested short description for PhD applications
 
-> My MSc dissertation investigated a simulation-based hybrid renewable-energy concept for low-power Power IoT applications. I worked with MATLAB/Simulink and developed function-based models representing selected wind-turbine, electromagnetic, PMSG, battery/converter and supervisory-control behaviours. The project provided a foundation in subsystem modelling and hybrid energy-system integration, while also identifying areas requiring more rigorous physical modelling and validation.
+> My MSc dissertation investigated a simulation-based hybrid renewable-energy concept for low-power IoT applications. I used MATLAB/Simulink and developed function-based representations of selected wind-turbine, electromagnetic, active-magnetic-bearing, PMSG, battery/converter and supervisory-control behaviours. The project provided a foundation in subsystem modelling and hybrid energy-system integration, while identifying areas requiring more rigorous physical modelling and validation.
