@@ -22,7 +22,7 @@ calculationFactor = 12;
 
 % Calculate area and pitch angle
 bladeArea = bladeLength * bladeWidth;
-pitchAngle = 10; % degrees (original function uses sin/cos)
+pitchAngle = 10; % degrees (original listing uses sin/cos, which expect radians)
 
 % Calculate aerodynamic force
 windArea = bladeArea * sin(pitchAngle);
