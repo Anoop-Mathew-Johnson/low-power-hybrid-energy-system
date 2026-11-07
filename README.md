@@ -58,3 +58,11 @@ The repository contains selected function listings only. The complete Simulink m
 ## Skills and engineering topics
 
 MATLAB · Simulink · Renewable energy systems · Wind energy conversion · Solar PV · Energy storage · Power electronics · Electrical machines · System modelling · Hybrid energy management
+
+## Technical documentation
+
+- [System architecture (conceptual)](Documentation/System_Architecture.md)
+- [Research methodology and individual contribution](Documentation/Research_Methodology_and_Contribution.md)
+- [Source provenance and dissertation page mapping](Documentation/Source_Provenance.md)
+- [Code notes and modelling limitations](Documentation/Code_Notes.md)
+- [Code review and validation plan](Documentation/Code_Review_and_Validation_Plan.md)
