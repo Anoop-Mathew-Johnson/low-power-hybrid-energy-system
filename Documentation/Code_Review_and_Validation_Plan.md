@@ -70,3 +70,66 @@ For every executed test, record:
 ## Publication rule
 
 Until the functions have been executed and checked, describe them as **selected dissertation-derived MATLAB function listings**. After validation, report exactly which tests passed and which limitations remain. Never imply that the complete hybrid system has been experimentally validated based only on these function listings.
+
+
+## Initial validation pass (2026-11-07)
+
+### What was checked
+
+- Retrieved all eight published `.m` files from the repository and reviewed their function declarations, file-name matches, block endings, control-flow structure and principal calculations.
+- Compared the dissertation-derived calculations with the source listings in Chapter 4.
+- Performed hand-calculated numerical spot checks of the VAWT equations for selected wind speeds.
+- Reviewed boundary conditions and identified cases where the equations produce undefined or misleading values.
+
+### Results
+
+| Check | Result | Interpretation |
+|---|---|---|
+| Primary function name vs. filename | Pass on visual inspection for all 8 files | Names match the repository filenames. This is not a MATLAB parser result. |
+| Function/control block structure | No obvious unmatched `if`/`end` or function endings found in manual review | Still requires MATLAB/Octave parsing. |
+| VAWT spot checks at 0, 5, 10 and 25 m/s | Calculations produce finite values in the hand-calculated cases | These are calculations of the current equations, not validation that the equations are physically correct. |
+| Battery loop | Fails intended time-series behaviour | `time = 30` is scalar, so `2:length(time)` is empty and the update loop executes zero times. |
+| AMB zero-motion boundary | Fails numerical robustness | At zero input rotational motion, bearing force and stiffness are zero; the damping expression evaluates as zero multiplied by infinity, producing NaN in IEEE floating-point arithmetic. |
+| Electromagnetic force dimensional check | Fails physical dimensional consistency | The output equation does not yield force units from the stated quantities. |
+| Hybrid control hardware test | Not applicable / not implemented | Action functions only display text; they do not operate sensors or hardware. |
+
+### VAWT hand-calculation spot checks
+
+Using the current mechanical-bearing function's equations, `pitchAngle = 10` is passed to MATLAB's `sin` and `cos` functions as 10 radians, despite the comment identifying degrees. With that exact current implementation, the raw calculated values before the sine-wave perturbation are approximately:
+
+| Wind speed | Raw torque | Raw power |
+|---:|---:|---:|
+| 0 m/s | 0.000 N m | 0.000 W |
+| 5 m/s | 0.462 N m | 7.707 W |
+| 10 m/s | 2.183 N m | 72.766 W |
+| 25 m/s | 14.894 N m | 1,241.131 W |
+
+These values only confirm the arithmetic of the implemented formula for those inputs. They should not be interpreted as credible turbine performance predictions.
+
+### Runtime limitation
+
+No MATLAB or GNU Octave executable is available in the current execution environment. Therefore, **no actual MATLAB/Octave execution, parser check, Code Analyzer run, or automated unit test has been completed**. MathWorks documents `checkcode(filename)` as a MATLAB Code Analyzer check for potential code problems; it should be run locally on the downloaded files. See: https://www.mathworks.com/help/matlab/ref/checkcode.html
+
+### Required next runtime checks
+
+In MATLAB, from the repository root, run:
+
+```matlab
+files = {
+    '01_Wind_Turbine_Modelling/calculateVAWTPowerAndTorque.m'
+    '01_Wind_Turbine_Modelling/calculateAMBPowerAndTorque.m'
+    '01_Wind_Turbine_Modelling/verticalAxisWindTurbine.m'
+    '02_Electromagnetic_System/calculateElectromagneticForce.m'
+    '03_Generator_Modelling/pmsg_power_output.m'
+    '04_Battery_and_Converter/simulateBuckConverter.m'
+    '05_Hybrid_Control/active_magnetic_bearing.m'
+    '05_Hybrid_Control/hybridControl.m'
+};
+
+for k = 1:numel(files)
+    fprintf('\n--- %s ---\n', files{k});
+    checkcode(files{k});
+end
+```
+
+Then run controlled test cases for each function, capture the MATLAB release, inputs, outputs and warnings, and add only the actual results to this report. Do not mark the code as runtime-tested until this step is complete.
