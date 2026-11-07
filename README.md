@@ -1,85 +1,60 @@
-# low-power-hybrid-energy-system
-MSc engineering project exploring a low-power hybrid renewable energy system for Power IoT applications.
 # Low-Power Hybrid Energy System for Power IoT Applications
 
-## Overview
+MSc Electrical & Electronics Engineering dissertation project exploring a proposed low-power hybrid renewable-energy system for Power IoT applications.
 
-This repository documents my MSc engineering project investigating a low-power hybrid renewable energy system designed for Power IoT applications.
+## Project overview
 
-The project explored the integration of renewable energy generation, energy storage and power management to support reliable operation of low-power connected systems.
+The research investigated a hybrid architecture combining solar PV generation, a Savonius vertical-axis wind turbine, a Permanent Magnet Synchronous Generator (PMSG), battery storage and power-management concepts. MATLAB functions were used as part of the modelling and simulation work, alongside a system-level Simulink model.
 
-## Project Context
+This repository publishes selected MATLAB function code transcribed from the dissertation. It is a code sample of the academic modelling work, not a complete, independently reproducible Simulink project or a validated hardware implementation.
 
-Modern Power IoT systems require reliable energy sources while operating under constraints related to power consumption, energy availability and system efficiency.
+## Repository structure
 
-The project investigated a hybrid energy architecture combining renewable energy generation and energy storage with appropriate power-management techniques.
+```text
+01_Wind_Turbine_Modelling/
+  calculateVAWTPowerAndTorque.m
+  calculateAMBPowerAndTorque.m
+  verticalAxisWindTurbine.m
+02_Electromagnetic_System/
+  calculateElectromagneticForce.m
+03_Generator_Modelling/
+  pmsg_power_output.m
+04_Battery_and_Converter/
+  simulateBuckConverter.m
+05_Hybrid_Control/
+  active_magnetic_bearing.m
+  hybridControl.m
+Documentation/
+  Code_Notes.md
+```
 
-## System Concept
+## Modelling areas represented
 
-The investigated system incorporated:
+- Mechanical-bearing and active-magnetic-bearing VAWT calculations
+- Simplified electromagnetic-force calculation
+- Vertical-axis turbine rotational-motion model
+- Simplified PMSG output relationship
+- Buck-converter and battery behaviour illustration
+- Supervisory hybrid-system control logic
 
-* Savonius wind energy generation
-* Permanent Magnet Synchronous Generator (PMSG)
-* Active Magnetic Bearing (AMB)
-* Battery energy storage
-* Maximum Power Point Tracking (MPPT)
-* Power-management circuitry
-* MATLAB/Simulink-based system modelling
+## How to use
 
-The overall objective was to investigate how these elements could be integrated into a low-power hybrid energy system.
+The files are individual MATLAB functions. Download or clone the repository and add the relevant function folder to the MATLAB path before calling a function. Function inputs and outputs are indicated in each file's header.
 
-## Engineering Areas
+These files were transcribed from the function listings in the MSc dissertation. They have not been presented as a fully tested software package. Review the accompanying [Code Notes](Documentation/Code_Notes.md) before interpreting results or using the functions in further work.
 
-The project involved work across:
+## Important modelling limitations
 
-* Renewable energy systems
-* Wind energy conversion
-* Electrical machines
-* Energy storage
-* Power electronics
-* Power management
-* System modelling
-* MATLAB/Simulink
-* Power IoT applications
+The published functions preserve the original dissertation's simplified modelling approach. They contain assumptions and limitations that should be considered before reuse, including degree/radian handling in trigonometric expressions, simplified force and torque relationships, a scalar time definition in the battery routine, and placeholder actions in the hybrid controller. These are academic code samples and should not be used to size, control or certify real equipment.
 
-## Project Methodology
+## Academic context
 
-The project involved:
+MSc Electrical & Electronics Engineering, Glasgow Caledonian University (2022–2023).
 
-1. Defining system requirements.
-2. Developing the overall hybrid energy architecture.
-3. Investigating the renewable generation subsystem.
-4. Modelling energy storage and power-management elements.
-5. Developing a system-level simulation model.
-6. Evaluating system behaviour under different operating conditions.
-7. Analysing the resulting system performance.
+Dissertation: **Designing a Low Power Hybrid System to Power IoT Applications**.
 
-## Source Code and Confidentiality
+The repository contains selected function listings only. The complete Simulink model, associated model files, datasets and other dissertation materials are not included.
 
-This repository includes selected MATLAB functions developed as part of my MSc dissertation.
+## Skills and engineering topics
 
-The published functions illustrate the modelling of wind turbine behaviour, electromagnetic interactions, generator output, battery and converter behaviour, and hybrid system control logic.
-
-The complete Simulink project files, datasets and other implementation-specific materials are not included where their disclosure may conflict with applicable confidentiality or NDA requirements.
-
-The published code represents selected academic research work and should be interpreted within the assumptions and limitations described in the accompanying documentation.
-
-## Skills Demonstrated
-
-* Electrical system modelling
-* Renewable energy engineering
-* MATLAB
-* Simulink
-* Power-system analysis
-* Energy-storage concepts
-* System integration
-* Engineering problem solving
-* Technical research
-
-## Project Status
-
-**Completed — MSc Engineering Project**
-
-## Future Development
-
-Potential future work could investigate improved energy-management strategies, enhanced renewable-energy integration and hardware implementation for low-power Power IoT applications.
+MATLAB · Simulink · Renewable energy systems · Wind energy conversion · Solar PV · Energy storage · Power electronics · Electrical machines · System modelling · Hybrid energy management
