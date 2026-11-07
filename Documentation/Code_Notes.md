@@ -29,9 +29,3 @@ The functions are not claimed to be a complete simulation package, validated eng
 6. **Battery routine:** The original routine defines `time = 30` as a scalar. Consequently, `length(time)` is one and the loop does not perform a multi-step voltage simulation. The voltage output remains the initial value in this implementation. Battery voltage is also not generally a simple linear function of current alone.
 7. **Hybrid controller:** The action functions in `hybridControl.m` are placeholders that print messages. They do not interface with Raspberry Pi GPIO, sensors, relays, converters or actual equipment. The thresholds are illustrative and not safety settings.
 8. **Simulation integration:** The repository does not contain the complete Simulink model, solver settings, test data or hardware implementation. Individual functions should not be assumed to reproduce the full dissertation simulation by themselves.
-
-## Recommended interpretation
-
-Treat these files as evidence of the modelling topics explored during the MSc project and as a starting point for independent review. Before using them for quantitative design or physical control, revisit the equations, units, assumptions, parameter sources and boundary conditions; then validate revised models against analytical calculations, simulation test cases and appropriate experimental data.
-
-Any future corrected or extended implementation should be kept clearly separate from these original dissertation-derived samples, with changes and validation documented.
