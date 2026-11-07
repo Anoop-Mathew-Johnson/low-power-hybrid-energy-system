@@ -2,33 +2,64 @@
 
 **MSc dissertation project | Glasgow Caledonian University | 2022–2023**
 
-A simulation-oriented MSc research project exploring a proposed hybrid renewable-energy system for low-power Internet of Things (IoT) applications.
+A simulation-oriented MSc research project investigating a proposed hybrid renewable-energy concept for low-power Internet of Things (IoT) applications.
 
 ## Project overview
 
-The dissertation investigated a proposed hybrid energy architecture combining solar photovoltaic (PV) generation, a Savonius-type vertical-axis wind turbine (VAWT), a permanent magnet synchronous generator (PMSG), battery storage and power-management concepts.
+The dissertation, *Designing a Low Power Hybrid System to Power IoT Applications*, explored a concept combining:
 
-MATLAB function-based models and a MATLAB/Simulink modelling workflow were used to represent selected subsystem behaviours and explore the proposed system concept. This repository makes selected MATLAB function listings and supporting research documentation available for academic and portfolio review.
+- Solar photovoltaic (PV) generation with maximum power point tracking (MPPT)
+- A Savonius-type vertical-axis wind turbine (VAWT)
+- Permanent magnets and an electromagnetic arrangement intended to provide rotor assistance
+- An Active Magnetic Bearing (AMB) concept in place of a conventional mechanical bearing
+- A permanent magnet synchronous generator (PMSG) representation
+- Battery storage and a buck-converter representation
+- A threshold-based supervisory-control concept using environmental and electrical sensor inputs
 
-**Project scope:** This is a selected-code publication accompanying an MSc dissertation. It is not a complete, independently reproducible Simulink project, a validated engineering software package or evidence of a physically constructed and experimentally validated prototype.
+The research used mathematical calculations and MATLAB/Simulink modelling. This repository publishes selected MATLAB function listings from the dissertation and supporting documentation.
+
+**Scope:** This is a selected-code academic portfolio repository. It is not the complete Simulink project, a fully reproducible copy of every dissertation simulation, a validated engineering software package or evidence of a physically constructed and experimentally validated prototype.
 
 ## Research objectives
 
-- Explore a hybrid solar and wind energy concept for low-power IoT applications.
-- Represent selected turbine, electromagnetic, generator, storage/converter and supervisory-control behaviours using MATLAB functions.
-- Consider how renewable generation, energy storage and power-management concepts could be brought together at system level.
-- Identify modelling assumptions and areas requiring further engineering development.
+1. Explore solar–wind hybrid energy technology for low-power applications.
+2. Investigate the potential role of magnetic-bearing technology in a wind-turbine concept.
+3. Compare a model of a mechanical-bearing wind turbine with an AMB-related model.
+4. Develop a conceptual hybrid model combining solar, wind, electromagnetic and storage elements.
+5. Represent supervisory control behaviour for the proposed hybrid system.
+6. Examine the model outputs reported in the dissertation and identify further work required.
 
-## Modelling areas represented
+## Dissertation-reported results
 
-- VAWT power and torque calculations with mechanical-bearing parameters
-- VAWT calculations incorporating an active-magnetic-bearing (AMB) related term
-- Simplified rotor rotational-motion calculation
-- Illustrative electromagnetic-force calculation
-- Simplified PMSG output relationship
-- Buck-converter and battery behaviour illustration
-- AMB-related angular-velocity calculation
-- Threshold-based supervisory control logic
+The dissertation reports the following power outputs for its mechanical-bearing and AMB-related wind-turbine comparison:
+
+| Wind speed (m/s) | Mechanical-bearing model (W) | AMB-related model (W) |
+|---:|---:|---:|
+| 5.0 | 7.708 | 8.063 |
+| 7.5 | 29.14 | 31.75 |
+| 10.0 | 72.77 | 79.03 |
+| 12.5 | 146.5 | 157.8 |
+| 15.0 | 258.1 | 275.8 |
+
+The dissertation also reports the following total outputs for its proposed hybrid model:
+
+| Wind speed (m/s) | Reported wind contribution (W) | Reported solar contribution (W) | Reported total (W) |
+|---:|---:|---:|---:|
+| 5.0 | 78.55 | 30.33 | 108.88 |
+| 7.5 | 78.81 | 24.53 | 103.34 |
+| 10.0 | 0.2866 | 26.50 | 26.7866 |
+| 12.5 | 0.2864 | 32.58 | 32.8664 |
+| 15.0 | 0.2862 | 24.15 | 24.4362 |
+| 17.5 | 0.2862 | 26.56 | 26.8462 |
+| 20.0 | 0.2877 | 29.63 | 29.9177 |
+| 22.5 | 0.2869 | 34.39 | 34.6769 |
+| 25.0 | 0.2867 | 28.60 | 28.8867 |
+| 27.5 | 78.81 | 26.70 | 105.51 |
+| 30.0 | 78.62 | 29.24 | 107.86 |
+
+**Important interpretation note:** These are values reported in the dissertation, not independently reproduced or validated results. The proposed-model table shows a sharp change in the reported wind contribution at the 10 m/s and 25 m/s operating thresholds. The dissertation's Chapter 5 discussion says output is low between 10 and 25 m/s and rises outside that interval, while its Chapter 6 conclusion describes optimal performance within 10–25 m/s. These statements are inconsistent; the repository does not resolve that discrepancy.
+
+The bearing comparison also requires caution: the dissertation estimates 9 W total power for four electromagnets in its AMB sizing discussion, but the reported comparison table does not clearly show that auxiliary electrical consumption being deducted from the AMB-related output. Therefore, the table alone does not establish a net system-efficiency improvement.
 
 ## Repository structure
 
@@ -48,39 +79,41 @@ MATLAB function-based models and a MATLAB/Simulink modelling workflow were used 
   hybridControl.m
 Documentation/
   Dissertation_Information.md
+  Source_Provenance.md
   System_Architecture.md
   Research_Methodology_and_Contribution.md
-  Source_Provenance.md
   Code_Notes.md
   Future_Work_and_Technical_Considerations.md
 Tests/
   run_validation.m
 ```
 
-## How to explore the repository
+## Exploring the MATLAB functions
 
-The `.m` files are individual MATLAB functions. To inspect or use a function, download or clone the repository and add the relevant function folder to the MATLAB path. Function inputs and outputs are indicated in each file.
+The `.m` files are individual function listings associated with Chapter 4 of the dissertation. Their source sections and printed page references are documented in [Source Provenance](Documentation/Source_Provenance.md).
 
-The optional test harness is located at `Tests/run_validation.m`. It is intended for preliminary execution checks in MATLAB or GNU Octave. **It has not been run as part of this repository update.** Its checks do not establish physical accuracy or validate the complete hybrid energy system.
+The optional script at `Tests/run_validation.m` is a preliminary execution-check harness. **It has not been run as part of this repository update.** Even successful execution checks would not establish the physical accuracy of the equations or validate the complete hybrid system.
 
 ## Research context and contribution
 
-The work was completed as part of the MSc Electrical & Electronics Engineering programme at Glasgow Caledonian University. The dissertation explored a proposed hybrid renewable-energy concept and used MATLAB/Simulink as the modelling environment.
+The work was completed as part of the MSc Electrical & Electronics Engineering programme at Glasgow Caledonian University. It provided experience in decomposing a hybrid energy concept into subsystems and representing selected wind-turbine, electromagnetic, generator, storage/converter and supervisory-control behaviours using MATLAB functions and a MATLAB/Simulink workflow.
 
-See [Dissertation Information](Documentation/Dissertation_Information.md) for the academic context, [Research Methodology and Individual Contribution](Documentation/Research_Methodology_and_Contribution.md) for the work represented, and [Source Provenance](Documentation/Source_Provenance.md) for the mapping between repository files and dissertation listings.
+See:
+- [Dissertation Information](Documentation/Dissertation_Information.md)
+- [Research Methodology and Individual Contribution](Documentation/Research_Methodology_and_Contribution.md)
+- [Conceptual System Architecture](Documentation/System_Architecture.md)
+- [Source Provenance](Documentation/Source_Provenance.md)
 
-## Scope, limitations and responsible interpretation
+## Limitations and responsible interpretation
 
-The published functions preserve the simplified modelling approach represented in the dissertation listings. Known limitations include assumptions in the aerodynamic and electromagnetic relationships, angle-unit handling in trigonometric expressions, simplified generator and battery representations, and placeholder actions in the supervisory controller.
+The published functions preserve simplified dissertation-derived relationships. They include assumptions and implementation limitations involving angle units, aerodynamic and electromagnetic equations, generator and battery representations, and placeholder supervisory-control actions. The full Simulink model, solver settings, supporting datasets and hardware implementation are not included.
 
-These limitations are described in [Code Notes](Documentation/Code_Notes.md) and [Future Work and Technical Considerations](Documentation/Future_Work_and_Technical_Considerations.md). The code should not be used to size, control, certify or operate real equipment without appropriate engineering redevelopment and verification.
-
-The repository does not include the complete Simulink model, model parameters, solver configuration, all supporting datasets or a hardware implementation.
+Detailed notes are provided in [Code Notes](Documentation/Code_Notes.md) and [Future Work and Technical Considerations](Documentation/Future_Work_and_Technical_Considerations.md). The code must not be used to size, control, certify or operate real equipment without independent engineering redevelopment and verification.
 
 ## Technical topics
 
-MATLAB · Simulink · Renewable energy systems · Solar PV · Wind energy conversion · Energy storage · Power electronics · Electrical machines · Hybrid energy systems · System modelling
+MATLAB · Simulink · Renewable energy systems · Solar PV · Wind energy conversion · Active magnetic bearings · Electromagnetic systems · PMSG · Energy storage · Power electronics · Hybrid energy systems
 
 ## Academic reference
 
-Anoop Johnson, *Designing a Low Power Hybrid System to Power IoT Applications*, MSc dissertation, Glasgow Caledonian University, 2023. Further details are provided in [Dissertation Information](Documentation/Dissertation_Information.md).
+Anoop Johnson, *Designing a Low Power Hybrid System to Power IoT Applications*, MSc dissertation, Glasgow Caledonian University, 2023.
