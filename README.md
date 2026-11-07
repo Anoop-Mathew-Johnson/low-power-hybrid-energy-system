@@ -54,11 +54,15 @@ The project involved:
 6. Evaluating system behaviour under different operating conditions.
 7. Analysing the resulting system performance.
 
-## Confidentiality
+## Source Code and Confidentiality
 
-Detailed MATLAB source files, Simulink models, project datasets and other implementation-specific materials are not included in this repository where their disclosure may conflict with applicable confidentiality or NDA requirements.
+This repository includes selected MATLAB functions developed as part of my MSc dissertation.
 
-This repository therefore provides a **non-confidential technical overview** of the project rather than the complete implementation.
+The published functions illustrate the modelling of wind turbine behaviour, electromagnetic interactions, generator output, battery and converter behaviour, and hybrid system control logic.
+
+The complete Simulink project files, datasets and other implementation-specific materials are not included where their disclosure may conflict with applicable confidentiality or NDA requirements.
+
+The published code represents selected academic research work and should be interpreted within the assumptions and limitations described in the accompanying documentation.
 
 ## Skills Demonstrated
 
