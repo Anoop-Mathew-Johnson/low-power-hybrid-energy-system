@@ -1,33 +1,30 @@
-# Source Provenance Map
+# Source Provenance: Dissertation-to-Repository Mapping
 
-## Primary source
+The MATLAB files in this repository correspond to selected function listings in the author's MSc dissertation, *Designing a Low Power Hybrid System to Power IoT Applications* (Glasgow Caledonian University, 2023).
 
-Anoop Johnson, MSc dissertation, *Designing a Low Power Hybrid System to Power IoT Applications*, Glasgow Caledonian University, 2023. Chapter 4, **System Model**.
+The page numbers below are the **printed page numbers in the dissertation**, not the PDF viewer page indices. Repository files include formatting and explanatory comments for readability. The repository does not include the complete Simulink models shown in the dissertation.
 
-The page references below are the printed page numbers visible in the dissertation, not PDF viewer page indices.
+| Repository file | Dissertation section | Printed page(s) | Listing / subject |
+|---|---|---:|---|
+| `01_Wind_Turbine_Modelling/calculateVAWTPowerAndTorque.m` | 4.1.1.2 | 32–33 | Mechanical-bearing VAWT power and torque |
+| `01_Wind_Turbine_Modelling/calculateAMBPowerAndTorque.m` | 4.1.2.2 | 34–35 | AMB-related VAWT power and torque |
+| `02_Electromagnetic_System/calculateElectromagneticForce.m` | 4.2.1 | 37–38 | Electromagnetic-force calculation |
+| `01_Wind_Turbine_Modelling/verticalAxisWindTurbine.m` | 4.2.2 | 38–39 | Vertical-blade rotor rotational motion |
+| `05_Hybrid_Control/active_magnetic_bearing.m` | 4.2.3 | 40–41 | AMB-related angular-velocity calculation |
+| `03_Generator_Modelling/pmsg_power_output.m` | 4.2.4 | 41 | Generator / PMSG output relationship |
+| `04_Battery_and_Converter/simulateBuckConverter.m` | 4.2.5 | 41–42 | Buck-converter and battery calculation |
+| `05_Hybrid_Control/hybridControl.m` | 4.3.2 | 43–46 | MATLAB function listing for proposed Raspberry Pi control approach |
 
-| Repository file | Dissertation section | Printed pages |
-|---|---|---:|
-| `calculateVAWTPowerAndTorque.m` | 4.1.1.2 — Mechanical Bearing MATLAB Function | 32–33 |
-| `calculateAMBPowerAndTorque.m` | 4.1.2.2 — Wind Turbine with AMB MATLAB Function | 34–35 |
-| `calculateElectromagneticForce.m` | 4.2.1 — MATLAB Function Defining Electromagnetic System | 37–38 |
-| `verticalAxisWindTurbine.m` | 4.2.2 — MATLAB Function Defining Vertical Blades | 38–39 |
-| `active_magnetic_bearing.m` | 4.2.3 — MATLAB Function Defining AMB | 40–41 |
-| `pmsg_power_output.m` | 4.2.4 — MATLAB Function Defining Generator | 41 |
-| `simulateBuckConverter.m` | 4.2.5 — MATLAB Function Defining Battery | 41–42 |
-| `hybridControl.m` | 4.3.2 — MATLAB Function for Raspberry Pi | 43–45 |
+## Related dissertation material
 
-## Transcription notes
-
-- Code was transcribed from the dissertation's text listings and formatted as individual `.m` files.
-- Line wrapping and indentation were normalised where required.
-- In `hybridControl.m`, the final MATLAB keyword was normalised to lowercase `end` so the function file uses MATLAB syntax consistently.
-- Explanatory comments were added to make provenance and known limitations clear. They are not claims that the dissertation contained those exact comments.
-- No model equations have intentionally been corrected in the dissertation-derived source files.
-- Where the dissertation or code listings contain questionable equations, units, assumptions or conflicting result interpretations, the concerns are described in [Code Notes](Code_Notes.md) and [Future Work and Technical Considerations](Future_Work_and_Technical_Considerations.md).
+- **Chapter 3, printed pages 25–30:** bearing calculations, solar PV assumptions, Savonius turbine assumptions, electromagnetic subsystem calculations and control requirements.
+- **Chapter 4, printed pages 32–46:** turbine, hybrid-system and control model descriptions and MATLAB function listings.
+- **Chapter 5, printed pages 47–51:** performance figures, bearing comparison and proposed hybrid-model results.
+- **Chapter 6, printed page 52:** conclusions.
+- **Chapter 7, printed page 53:** future work, including magnetic-field interaction analysis, further integrated control-system simulation and hardware setup.
 
 ## Important distinction
 
-A source transcription is not the same as a validated reproduction of the dissertation's Simulink results. The full Simulink diagrams, block parameters, solver settings, test data and complete simulation project are not published in this repository. The function files should therefore be treated as selected source listings, not as a complete executable reproduction of the research.
+The dissertation includes Simulink diagrams and discusses simulation of the proposed system. The MATLAB functions published here are selected listings only. They are not the complete Simulink model and do not, by themselves, reproduce all the dissertation's reported figures and tables.
 
-The repository preserves the dissertation-derived function approach for traceability. Any corrected or improved equations should be introduced in separately named future versions with their derivations documented, rather than silently replacing the original listings.
+The repository's code comments and formatting have been edited for readability. The files should be described as dissertation-derived or transcribed listings, not as a byte-for-byte archival copy of the original dissertation source.

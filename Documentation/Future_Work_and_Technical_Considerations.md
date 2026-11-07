@@ -1,94 +1,49 @@
 # Future Work and Technical Considerations
 
-## Current repository status
+This document separates future work explicitly identified in the MSc dissertation from additional technical considerations visible in the published MATLAB listings and reported results.
 
-This repository publishes selected MATLAB function listings from Chapter 4 of the MSc dissertation. The functions are retained as dissertation-derived academic code samples.
+## Future work identified in the dissertation
 
-No MATLAB or GNU Octave execution, parser check, MATLAB Code Analyzer run or automated test has been completed as part of this repository update. The presence of the test script does not mean that it has been executed or passed.
+Chapter 7 identifies three principal areas:
 
-The observations below are preliminary considerations based on reviewing the published code and dissertation. They are not a complete code audit, runtime test report or validation of the physical models.
+1. **Magnetic-field interaction analysis:** Examine the strength, direction and distribution of magnetic fields produced by the electromagnetic subsystem and AMB; investigate their interaction and possible effects on AMB stability and performance; consider electromagnetic interference and optimisation.
+2. **Integrated control-system simulation:** Develop a simulation model including the electromagnetic system, AMB and Raspberry Pi module; integrate control algorithms; tune the control response; and conduct sensitivity analysis under parameter variation and external disturbances. The dissertation also suggests a real-time simulation environment before hardware deployment.
+3. **Hardware implementation:** Select and acquire components, assemble and integrate the proposed model, and implement the control algorithms on a hardware platform with Raspberry Pi, control hardware and sensors.
 
-## Technical considerations identified from code review
+These are recorded as future work in the dissertation. This repository does not claim that they were completed.
 
-| File | Consideration for future work |
-|---|---|
-| `calculateVAWTPowerAndTorque.m` | The pitch angle is described in degrees but passed to MATLAB `sin` and `cos`, which interpret inputs as radians. Confirm the intended angle convention and review torque and friction units. |
-| `calculateAMBPowerAndTorque.m` | The AMB torque and force relationships are simplified. A physically derived actuator and rotor model would be needed for engineering use. |
-| `verticalAxisWindTurbine.m` | The electromagnetic branch requires review of the physical quantities and units used in the magnetic interaction and rotational-motion calculations. |
-| `calculateElectromagneticForce.m` | The listed relationship does not establish a generally valid force model from the stated quantities. A revised formulation would need to be derived from an appropriate electromagnetic model. |
-| `pmsg_power_output.m` | The function uses a simplified proportional relationship rather than a complete PMSG electrical model with machine parameters, rectification, losses and load behaviour. |
-| `simulateBuckConverter.m` | The scalar time definition means the update loop does not perform a multi-step time-series calculation. A time-vector implementation and documented battery model would be needed for further study. |
-| `active_magnetic_bearing.m` | The state update and auxiliary calculations are simplified. Future work should define the state variables, units, actuator dynamics and control law. |
-| `hybridControl.m` | The action routines print messages and are placeholders; they do not operate Raspberry Pi GPIO, sensors, relays or physical equipment. |
+## Additional technical considerations from the repository code review
 
-These observations are also discussed in [Code Notes](Code_Notes.md). The dissertation-derived source files have intentionally not been altered as part of this documentation update.
+The following issues are visible in the selected MATLAB listings. They are documented to help readers interpret the code; the functions are being preserved as dissertation-derived material rather than silently rewritten.
 
-## Issues requiring careful interpretation of the dissertation results
+- **Angle convention:** The mechanical-bearing function labels the pitch angle as degrees and its dissertation listing comment mentions `sind()`, but the expression uses `sin()`. The AMB-related function also labels the angle in degrees while using `sin()` and `cos()`.
+- **Aerodynamic model:** The turbine calculations are simplified and do not constitute a validated aerodynamic model of a Savonius rotor.
+- **AMB model:** The AMB-related calculations do not implement a complete magnetic actuator, rotor-dynamic and closed-loop control model.
+- **Electromagnetic force:** The force-like calculation is based on simplified dissertation relationships and is not dimensionally established as a general Lorentz-force model.
+- **Electromagnetic branch units:** The VAWT function accepts an input named `electromagneticForce` but subsequently uses it as a magnetic-field quantity in further expressions. Its physical units and interpretation need to be re-derived.
+- **PMSG model:** The generator function is a simple proportional relationship and omits a full machine model, losses, rectifier and load.
+- **Battery/converter model:** The time variable is scalar in the published function, so its voltage-update loop does not execute. The routine is not a dynamic battery or switching-converter model.
+- **Supervisory control:** The control function's action routines only print status messages. It is not an operational Raspberry Pi implementation and does not provide hardware-level safety or protection.
+- **Net energy balance:** Chapter 3 estimates 9 W for four electromagnets. Any future comparison of system efficiency should explicitly account for AMB and electromagnetic auxiliary consumption, along with converter and control losses.
 
-### 1. Mechanical-bearing and AMB comparison
+## Results interpretation issue to retain transparently
 
-Chapter 5 reports higher turbine power for the AMB-related model than for the mechanical-bearing model. However, the AMB sizing discussion in Chapter 3 estimates 2.25 W per electromagnet, or 9 W for four electromagnets. The comparison table does not clearly show this auxiliary electrical demand being deducted from the AMB-related output.
+Chapter 5, Table 3 reports wind contribution of about 0.286–0.288 W for wind speeds from 10 m/s through 25 m/s, while values outside this range are around 78.6–78.8 W. Chapter 5's accompanying discussion describes low wind contribution in the 10–25 m/s interval. Chapter 6, however, describes 10–25 m/s as the optimal performance range.
 
-A future net-energy comparison should distinguish mechanical/electrical output from the electrical power consumed by the AMB system. The reported output figures alone do not establish that the AMB arrangement improves net system efficiency.
+The repository preserves the table values and records this discrepancy rather than selecting one interpretation without further evidence.
 
-### 2. Proposed hybrid model operating range
+Chapter 5, Table 2 reports higher output for the AMB-related model than the mechanical-bearing model. Chapter 3 separately estimates 9 W for four electromagnets, but the comparison table does not clearly state whether this auxiliary demand is deducted. A net-efficiency claim would require that energy balance to be resolved.
 
-Chapter 5, Table 3, reports wind contributions of approximately 78.6–78.8 W at 5–7.5 m/s and 27.5–30 m/s, but approximately 0.286–0.288 W between 10 and 25 m/s. The accompanying discussion also describes low wind output in the 10–25 m/s interval.
+## Possible next research steps
 
-Chapter 6, however, states that optimal performance occurs within 10–25 m/s. This conflicts with the preceding results table and discussion. The repository preserves the reported figures and flags the inconsistency rather than silently choosing one interpretation.
+A technically stronger follow-on study could:
 
-The branch condition described in the dissertation and represented in the vertical-axis function should be revisited alongside the Simulink model and the intended operating strategy before any revised conclusion is made.
+1. Re-derive the turbine aerodynamics, electromagnetic force, AMB actuator and PMSG equations with consistent SI units and documented parameter sources.
+2. Correct and document angle conventions and the wind-speed branch logic, preserving a separate record of the original dissertation implementation.
+3. Build an integrated time-domain model with explicit power paths, converter dynamics, battery state of charge and auxiliary loads.
+4. Define a control architecture with measurable inputs, explicit outputs, operating limits, interlocks and fault handling.
+5. Run repeatable simulation cases and sensitivity analysis.
+6. Compare selected model outputs against analytical calculations and, if feasible, laboratory measurements.
+7. Develop a hardware prototype only after the models, energy balance and protection requirements have been independently reviewed.
 
-### 3. Design target and model basis
-
-The dissertation specifies a 100 W wind-turbine target at 10 m/s, while its initial swept-area calculation reports approximately 60.58 W for the stated 0.2826 m² swept area and assumed power coefficient. The later mechanical-bearing and AMB-related comparison reports different outputs at 10 m/s. These figures arise in different parts of the dissertation and their assumptions should be reconciled before they are used as one consistent design-performance claim.
-
-### 4. Solar and energy-balance assumptions
-
-The dissertation specifies a 12 V, 56 W solar panel and presents an energy calculation using annual irradiation and daily exposure assumptions. Further work should clarify whether each reported solar quantity is instantaneous power, average power or energy over a defined period. A complete energy balance should use consistent units and time intervals.
-
-## Suggested future development
-
-### 1. Source and model traceability
-- Preserve the dissertation-derived function listings as a historical reference.
-- Keep the mapping between each function and its dissertation section/page.
-- Record the origin of model parameters and assumptions where those sources are available.
-
-### 2. Mathematical and dimensional review
-- Review each equation against an appropriate physical model.
-- Confirm SI units, sign conventions and angle conventions.
-- Document assumptions, parameter ranges and model boundaries.
-- Distinguish simplified illustrative relationships from quantities intended to represent physical measurements.
-
-### 3. Separate revised models
-- If the research is continued, create separately named revised implementations rather than silently changing the dissertation-derived functions.
-- Explain the derivation and rationale for each revised equation.
-- Maintain a clear change history between the dissertation listing and any later model.
-
-### 4. Simulation and software checks
-- Run the functions in a stated MATLAB or GNU Octave version.
-- Record warnings, errors, inputs and outputs.
-- Add repeatable test cases for zero, nominal and boundary operating conditions.
-- Use MATLAB Code Analyzer or appropriate static-analysis tools where available.
-- Report only checks that have actually been performed.
-
-### 5. System-level study
-- Define subsystem interfaces and energy-flow assumptions.
-- Consider converter dynamics, losses, battery state of charge and operating constraints.
-- Include AMB and electromagnetic auxiliary power consumption in the energy balance.
-- Reconcile the wind-speed operating logic and the reported results.
-- Examine energy balance and control behaviour across representative operating conditions.
-- Compare model outputs with analytical references or measured data where suitable evidence is available.
-
-### 6. Experimental work
-If a laboratory platform is developed, selected subsystem models could be compared with measured results using appropriate instrumentation and safe test procedures. Such work would be a separate research stage; it is not represented as completed in this repository.
-
-## Test harness
-
-A preliminary execution-check script is provided at `Tests/run_validation.m`. It is intended to check whether selected functions execute for example inputs and to display known implementation limitations.
-
-It has not been executed as part of this repository update. Even after execution checks are completed, those checks alone would not establish that the equations are physically accurate or that the complete hybrid system is validated.
-
-## Publication and reuse note
-
-The MATLAB functions are provided as selected dissertation-derived code listings for academic review. Anyone considering reuse should review the stated limitations and independently establish suitability for their intended purpose. Public distribution should remain subject to any applicable university, dissertation, employer or confidentiality requirements.
+These are recommendations for further work, not claims about work already completed.
