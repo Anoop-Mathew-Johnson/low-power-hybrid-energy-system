@@ -24,7 +24,7 @@ The page references below are the printed page numbers visible in the dissertati
 - In `hybridControl.m`, the final MATLAB keyword was normalised to lowercase `end` so the function file uses MATLAB syntax consistently.
 - Explanatory comments were added to make provenance and known limitations clear. They are not claims that the dissertation contained those exact comments.
 - No model equations have intentionally been corrected in the dissertation-derived source files.
-- Where the source itself contains questionable equations, units or assumptions, the concern is described in `Code_Notes.md` and `Code_Review_and_Validation_Plan.md`.
+- Where the source itself contains questionable equations, units or assumptions, the concern is described in [Code Notes](Code_Notes.md) and [Future Work and Technical Considerations](Future_Work_and_Technical_Considerations.md).
 
 ## Important distinction
 
